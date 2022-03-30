@@ -1,14 +1,13 @@
-package stateful.classic
+package statefulactor.classic
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 import akka.pattern.ask
-import stateful.classic.ClassicStatefulActor.{Add, Count, GetCount}
+import statefulactor.classic.ClassicStatefulActor.{Add, Count, GetCount}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.language.postfixOps
-
 
 object ClassicStatefulActor {
   case object Add

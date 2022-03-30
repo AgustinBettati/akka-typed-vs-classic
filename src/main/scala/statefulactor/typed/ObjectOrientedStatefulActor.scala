@@ -1,4 +1,4 @@
-package stateful.typed
+package statefulactor.typed
 
 import akka.actor.typed.{ActorRef, ActorSystem, Behavior, DispatcherSelector, Scheduler}
 import akka.actor.typed.scaladsl.ActorContext
@@ -6,7 +6,7 @@ import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.scaladsl.AbstractBehavior
 import akka.actor.typed.scaladsl.AskPattern.Askable
 import akka.util.Timeout
-import stateful.typed.ObjectOrientedStatefulActor.{Add, Command, Count, GetCount}
+import statefulactor.typed.ObjectOrientedStatefulActor.{Add, Command, Count, GetCount}
 import scala.language.postfixOps
 import scala.concurrent.{ExecutionContext, ExecutionContextExecutor, Future}
 import scala.concurrent.duration._

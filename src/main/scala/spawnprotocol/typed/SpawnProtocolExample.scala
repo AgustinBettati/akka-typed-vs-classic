@@ -3,7 +3,7 @@ import akka.actor.typed.{ActorRef, ActorSystem, Behavior, Props, SpawnProtocol}
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.scaladsl.LoggerOps
 import akka.util.Timeout
-import stateful.typed.TypedStatefulActor
+import statefulactor.typed.TypedStatefulActor
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration.DurationInt
