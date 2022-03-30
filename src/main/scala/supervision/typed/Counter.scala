@@ -9,7 +9,9 @@ object Counter {
   case class GetCount(replyTo: ActorRef[Int]) extends Command
 
   def apply(): Behavior[Command] =
-    Behaviors.supervise(counter(1)).onFailure[Exception](SupervisorStrategy.restart)
+    Behaviors.supervise(
+      counter(1)
+    ).onFailure[Exception](SupervisorStrategy.restart)
 
   private def counter(count: Int): Behavior[Command] =
     Behaviors.receiveMessage[Command] {

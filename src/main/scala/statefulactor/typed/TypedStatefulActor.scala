@@ -23,7 +23,7 @@ object TypedStatefulActor {
 
   def counter(count: Int): Behavior[Command] = Behaviors.receiveMessage {
     case Add => counter(count + 1)
-    case GetCount(replyTo) =>
+    case GetCount(replyTo: ActorRef[Count]) =>
       replyTo ! Count(count)
       Behaviors.same
   }
@@ -34,17 +34,15 @@ object TypedStatefulActorRunner extends App {
 
   val system: ActorSystem[Command] = ActorSystem(TypedStatefulActor(),"counter")
 
-  val counter: ActorRef[Command] = system
-
-  counter ! Add
-  counter ! Add
-  counter ! Add
+  system ! Add
+  system ! Add
+  system ! Add
   Thread.sleep(200)
 
   implicit val scheduler: Scheduler = system.scheduler
   implicit val timeout: Timeout = 1 second
 
-  val countResult: Future[Count] = (counter ? (replyTo => GetCount(replyTo))).mapTo[Count]
+  val countResult: Future[Count] = (system ? ((replyTo: ActorRef[Count]) => GetCount(replyTo)))
 
   countResult.foreach(println)
   Thread.sleep(200)
